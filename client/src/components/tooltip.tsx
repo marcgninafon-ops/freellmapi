@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { createPortal } from 'react-dom'
 
 // Hover tooltip rendered through a portal to document.body, so it's never
 // clipped by an ancestor's overflow (e.g. a table's overflow-x-auto). Position
@@ -70,7 +69,7 @@ export function Tooltip({ text, children, side = 'top', className }: {
       onBlur={hide}
     >
       {children}
-      {coords && createPortal(
+      {coords && (
         <span
           role="tooltip"
           style={{
@@ -83,8 +82,7 @@ export function Tooltip({ text, children, side = 'top', className }: {
           className="pointer-events-none w-56 rounded-lg bg-foreground px-2.5 py-1.5 text-xs leading-snug text-background shadow-md whitespace-pre-line"
         >
           {text}
-        </span>,
-        document.body,
+        </span>
       )}
     </span>
   )
