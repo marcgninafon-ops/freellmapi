@@ -467,7 +467,11 @@ function App() {
       <ThemeProvider>
         <I18nProvider>
           <BrowserRouter basename={import.meta.env.BASE_URL}>
-            <AuthGate>
+            {/* Keep the authentication gate inside the outer boundary too:
+                errors during status checks or the post-login transition must
+                render a diagnostic screen, never an unhandled blank viewport. */}
+            <ErrorBoundary>
+              <AuthGate>
               {/* Column, so a full-bleed route can claim the height the navbar
                   leaves without anyone having to know how tall the navbar is.
                   Fixed-position children (toaster, palette, reminder) are out of
@@ -513,7 +517,8 @@ function App() {
                   <NewBuildPrompt />
                 </AppShell>
               </ErrorBoundary>
-            </AuthGate>
+              </AuthGate>
+            </ErrorBoundary>
           </BrowserRouter>
         </I18nProvider>
       </ThemeProvider>
