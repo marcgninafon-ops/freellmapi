@@ -472,8 +472,9 @@ function App() {
                   leaves without anyone having to know how tall the navbar is.
                   Fixed-position children (toaster, palette, reminder) are out of
                   flow, and a padded route stretches to nothing it can show. */}
-              <AppShell>
-                <Navbar />
+              <ErrorBoundary>
+                <AppShell>
+                  <Navbar />
                 <PageContainer>
                   <PageBoundary>
                     <Routes>
@@ -509,8 +510,9 @@ function App() {
                 <Toaster />
                 <CommandPalette />
                 <UpdateReminder />
-                <NewBuildPrompt />
-              </AppShell>
+                  <NewBuildPrompt />
+                </AppShell>
+              </ErrorBoundary>
             </AuthGate>
           </BrowserRouter>
         </I18nProvider>
